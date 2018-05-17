@@ -8,8 +8,8 @@ int main(int argc, char *argv[]){
 	double* vector;
 	
 	//Allocating Memory and Assigning Values
-	allocMat(matrix, n);
-	allocVec(vector, n);
+	matrix = allocMat(matrix, n);
+	vector = allocVec(vector, n);
 	assignMat(matrix, n);
 	//assignVec(vector, n);
 
@@ -35,7 +35,7 @@ void freeMat(double** mat, int n)
 }
 
 //Allocate memory for first matrix
-void allocMat(double** mat, int n)
+double** allocMat(double** mat, int n)
 {
 	mat= malloc(n*sizeof(*mat));
 	for(int i=0; i<n; i++)
@@ -57,9 +57,10 @@ void assignMat(double** mat, int n)
 }
 
 //Allocate memory for vector
-void allocVec(double* vec, int n)
+double* allocVec(double* vec, int n)
 {
-	vec=malloc(n*sizeof(double));
+	vec=(double*)malloc(n*sizeof(double));
+	return vec;
 }
 
 //Assign values to vector
