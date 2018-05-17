@@ -4,12 +4,10 @@
 
 int main(int argc, char *argv[]){
 	int n = 5; //matrix is n x n
-	double** matrix;
-	double* vector;
 	
 	//Allocating Memory and Assigning Values
-	matrix = allocMat(matrix, n);
-	vector = allocVec(vector, n);
+	double **matrix = allocMat(matrix, n);
+	double *vector = allocVec(vector, n);
 	assignMat(matrix, n);
 	assignVec(vector, n);
 
@@ -18,8 +16,8 @@ int main(int argc, char *argv[]){
 	printMatVec(matrix, vector, result, n);
 
 	//Free Memory
-	//freeMat(matrix, n);
-	//free(vector);
+	freeMat(matrix, n);
+	free(vector);
 	return 0;
 }
 
@@ -42,6 +40,7 @@ double** allocMat(double** mat, int n)
 	{
 		mat[i]=(double*)malloc(n*sizeof(*mat[i]));
 	}
+    return mat;
 }
 
 //Assign values to first matrix
