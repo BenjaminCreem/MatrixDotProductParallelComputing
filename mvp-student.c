@@ -17,7 +17,7 @@ int main(int argc, char *argv[]){
 
 	//Free Memory
 	freeMat(matrix, n);
-	free(vector);
+    free(vector);
     free(result);
 	return 0;
 }
@@ -47,9 +47,9 @@ double** allocMat(double** mat, int n)
 //Assign values to first matrix
 void assignMat(double** mat, int n)
 {
-	for(int i=0; i<n; i++)
-	{
-		for(int j=0; j<n; j++)
+    for(int i=0; i<n; i++)
+    {
+        for(int j=0; j<n; j++)
 		{
             if(i==j)
             {
@@ -63,7 +63,7 @@ void assignMat(double** mat, int n)
             {
                 mat[i][j]=0;
             }
-		}
+        }
 	}	
 }
 
