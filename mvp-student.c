@@ -14,6 +14,7 @@ int main(int argc, char *argv[]){
 	//Finding Dot Product and Printing
 	double* result = mvp(matrix, vector, n);
 	printMatVec(matrix, vector, result, n);
+    //printf("%f", result[1]);
 
 	//Free Memory
 	freeMat(matrix, n);
@@ -50,7 +51,18 @@ void assignMat(double** mat, int n)
 	{
 		for(int j=0; j<n; j++)
 		{
-			mat[i][j] = 1;
+            if(i==j)
+            {
+                mat[i][j]=2;
+            }
+            else if(j-i==1 || i-j==1)
+            {
+                mat[i][j]=1;
+            }
+            else
+            {
+                mat[i][j]=0;
+            }
 		}
 	}	
 }
@@ -67,7 +79,7 @@ void assignVec(double* vec, int n)
 {
 	for(int i=0; i<n; i++)
 	{
-		vec[i]=2;
+		vec[i]=1;
 	}
 }
 
@@ -78,10 +90,10 @@ void printMatVec(double** mat, double* vec, double* mvp, int n)
 	{
 		for(int j=0; j<n; j++)
 		{
-			printf("%f ", mat[i][j]);
+			printf("%.2f ", mat[i][j]);
 		}
-		printf("* %f ", vec[i]);
-		printf("= %f \n", mvp[i]);
+		printf("* %.2f ", vec[i]);
+		printf("= %.2f \n", mvp[i]);
 	}
 }
 
@@ -94,11 +106,13 @@ double* mvp(double **mat, double* vec, int n)
 	//Find dot product
 	for(int i=0; i<n; i++)
 	{
+        mvp[i] = 0;
 		for(int j=0; j<n; j++)
 		{
 			mvp[i] += mat[j][i] * vec[i];
 		}
 	}
+    return mvp;
 }
 
  
