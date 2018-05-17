@@ -64,7 +64,7 @@ void assignMat(double** mat, int n)
                 mat[i][j]=0;
             }
         }
-	}	
+    }    
 }
 
 //Allocate memory for vector
