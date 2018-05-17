@@ -14,11 +14,11 @@ int main(int argc, char *argv[]){
 	//Finding Dot Product and Printing
 	double* result = mvp(matrix, vector, n);
 	printMatVec(matrix, vector, result, n);
-    //printf("%f", result[1]);
 
 	//Free Memory
 	freeMat(matrix, n);
 	free(vector);
+    free(result);
 	return 0;
 }
 
