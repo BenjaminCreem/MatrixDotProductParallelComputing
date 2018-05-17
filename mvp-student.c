@@ -14,8 +14,8 @@ int main(int argc, char *argv[]){
 	assignVec(vector, n);
 
 	//Finding Dot Product and Printing
-	mvp(matrix, vector, n);
-	printMatVec(matrix, vector, n);
+	double* result = mvp(matrix, vector, n);
+	printMatVec(matrix, vector, result, n);
 
 	//Free Memory
 	//freeMat(matrix, n);
@@ -73,15 +73,33 @@ void assignVec(double* vec, int n)
 }
 
 //Print matrix dot vector
-void printMatVec(double** mat, double* vec, int n)
+void printMatVec(double** mat, double* vec, double* mvp, int n)
 {
-	
+	for(int i=0; i<n; i++)
+	{
+		for(int j=0; j<n; j++)
+		{
+			printf("%f ", mat[i][j]);
+		}
+		printf("* %f ", vec[i]);
+		printf("= %f \n", mvp[i]);
+	}
 }
 
 //Calculate matrix dot vector
 double* mvp(double **mat, double* vec, int n)
 {
+	//Return matrix
+	double* mvp = (double*)malloc(n * sizeof(double));
 
+	//Find dot product
+	for(int i=0; i<n; i++)
+	{
+		for(int j=0; j<n; j++)
+		{
+			mvp[i] += mat[j][i] * vec[i];
+		}
+	}
 }
 
  
