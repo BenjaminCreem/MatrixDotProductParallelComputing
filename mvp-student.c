@@ -11,7 +11,7 @@ int main(int argc, char *argv[]){
 	matrix = allocMat(matrix, n);
 	vector = allocVec(vector, n);
 	assignMat(matrix, n);
-	//assignVec(vector, n);
+	assignVec(vector, n);
 
 	//Finding Dot Product and Printing
 	mvp(matrix, vector, n);
@@ -37,10 +37,10 @@ void freeMat(double** mat, int n)
 //Allocate memory for first matrix
 double** allocMat(double** mat, int n)
 {
-	mat= malloc(n*sizeof(*mat));
+	mat= (double**)malloc(n*sizeof(*mat));
 	for(int i=0; i<n; i++)
 	{
-		mat[i]=malloc(n*sizeof(*mat[i]));
+		mat[i]=(double*)malloc(n*sizeof(*mat[i]));
 	}
 }
 
