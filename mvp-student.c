@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "mvp-Header.h"
+#include <omp.h>
 
 //Benjamin Creem
 int main(int argc, char *argv[]){
-	int n = 5; //matrix is n x n
+	int n = 10000; //matrix is n x n
 	
 	//Allocating Memory and Assigning Values
 	double **matrix = allocMat(matrix, n);
@@ -13,8 +14,12 @@ int main(int argc, char *argv[]){
 	assignVec(vector, n);
 
 	//Finding Dot Product and Printing
+    double start = omp_get_wtime();
 	double* result = mvp(matrix, vector, n);
-	printMatVec(matrix, vector, result, n);
+    double end = omp_get_wtime();
+	//printMatVec(matrix, vector, result, n);
+
+    printf("\n\n\nTime: %f\n", end - start);
 
 	//Free Memory
 	freeMat(matrix, n);
@@ -105,6 +110,8 @@ double* mvp(double **mat, double* vec, int n)
 	double* mvp = (double*)malloc(n * sizeof(double));
 
 	//Find dot product
+    //#pragma omp parallel num_threads(24) - specifing in PBS file instead
+    #pragma omp parallel for 
 	for(int i=0; i<n; i++)
 	{
         mvp[i] = 0;
